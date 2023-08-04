@@ -12,9 +12,15 @@
 .loader {
   font-weight: 700;
 }
- 
+
+
+
 .error {
   font-weight: 700;
   color: red;
+}
+
+.breed-select {
+  max-width: 500px;
 }
 

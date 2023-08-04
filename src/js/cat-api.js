@@ -1,4 +1,4 @@
-import SlimSelect from 'slim-select'
+import Notiflix from 'notiflix';
 import axios from "axios";
 axios.defaults.headers.common["x-api-key"] = "live_4agEjA5ST4BR9dulRTIVW0nn4i5p8lzRbXBEu7TsSn87x4FkIRFvfUcLC7nVs8g6";
 const BASEURL = 'https://api.thecatapi.com/v1';
@@ -8,7 +8,7 @@ const catInfoEl = document.querySelector('.cat-info');
 const selectOptionsElement = document.querySelector('.breed-select');
 const loaderElem = document.querySelector('.loader');
 const errorElem = document.querySelector('.error');
-
+// loaderElem.textContent = "";
 export function fetchBreeds() {
   return fetch(`${BASEURL}/breeds?api_key=${API_KEY}`)
     .then(resp => {
@@ -39,14 +39,13 @@ export function fetchCatByBreed(event) {
     })
     .then(catData => {
       catInfoEl.innerHTML = catInfoRendering(catData[0]);
-      // setTimeout(() => loaderElem.classList.add('is-hidden'), 0);
       loaderElem.classList.add('is-hidden');
 
     })
     .catch(error => {
-      console.log(error);
+      Notiflix.Report.failure('ERROR!', 'Oops! Something went wrong! Try reloading the page!', 'Close');
       selectOptionsElement.classList.add('is-hidden');
-      errorElem.classList.toggle('is-hidden');
+      // errorElem.classList.toggle('is-hidden');
       loaderElem.classList.toggle('is-hidden');
     });
 };
