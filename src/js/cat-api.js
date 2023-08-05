@@ -13,12 +13,22 @@ export function fetchBreeds() {
   return fetch(`${BASEURL}/breeds?api_key=${API_KEY}`)
     .then(resp => {
       
-    // console.log(resp);
+    console.log(resp);
     if (!resp.ok) {
       throw new Error(resp.statusText)
       }
     return resp.json()
   })
+      
+  // const isRecipientAvailable = Math.random() > 0.5;    
+
+  //   if (isRecipientAvailable) {
+  //     throw new Error(resp.statusText)
+  //     }
+  //   return resp.json()
+  // })
+      
+      
 };
 
 
@@ -36,6 +46,9 @@ export function fetchCatByBreed(event) {
       }
       
       return resp.json()
+
+
+
     })
     .then(catData => {
       catInfoEl.innerHTML = catInfoRendering(catData[0]);
@@ -43,10 +56,12 @@ export function fetchCatByBreed(event) {
 
     })
     .catch(error => {
+      catInfoEl.innerHTML = "";
       Notiflix.Report.failure('ERROR!', 'Oops! Something went wrong! Try reloading the page!', 'Close');
       selectOptionsElement.classList.add('is-hidden');
-      // errorElem.classList.toggle('is-hidden');
       loaderElem.classList.toggle('is-hidden');
+     
+
     });
 };
 
