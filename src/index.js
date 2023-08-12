@@ -5,7 +5,7 @@ import 'slim-select/dist/slimselect.css';
 const selectOptionsElement = document.querySelector('.breed-select');
 const loaderElem = document.querySelector('.loader');
 const errorElem = document.querySelector('.error');
-
+import Notiflix from 'notiflix';  
 
 
 // selectOptionsElement.classList.add('is-hidden');
@@ -20,7 +20,9 @@ fetchBreeds()
      select: selectOptionsElement
     });
   })
-  .catch(error => console.log(error)
+  .catch(error => {
+    Notiflix.Notify.failure(`${error}`);
+  }
   );
 
 
